@@ -73,7 +73,7 @@ export default function Login() {
           <div className="row">
             <div className="col-md-6">
               <div className="card" style={{ "minHeight": "70vh", "padding": "7px 23px", "marginTop": "23%" }}>
-                <Link to={"/"} style={{ "color": "#ffffff", "textAlign": "left", "marginTop": "13px", "fontSize": "x-large" }}>
+                <Link to={"/"} style={{ "color": "black", "textAlign": "left", "marginTop": "13px", "fontSize": "x-large" }}>
                   <i className="fa-solid fa-arrow-left" ></i>
                 </Link>
                 <form >

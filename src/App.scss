@@ -60,7 +60,11 @@ a {
         min-height: 54vh;
         width: 78%;
         color: white;
-        background-image: url("./Assets/background.png");
+        // background-image: url("./Assets/background.png");
+        background: rgba(225, 225, 225, 0.2);
+        box-shadow: 0 4px 30px rgba(225, 225, 225, 0.2);
+        border-radius: 10px;
+        backdrop-filter: blur(5px);
 
         .box {
             background-color: rgba(0, 0, 0, 0.5607843137);

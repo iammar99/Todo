@@ -124,7 +124,7 @@ export default function Register() {
             </div>
             <div className="col-md-6">
               <div className="card" style={{ "minHeight": "78vh", "padding": "7px 23px", "marginTop": "19%" }}>
-                <Link to={"/"} style={{ "color": "#ffffff", "textAlign": "left", "marginTop": "13px", "fontSize": "x-large" }}>
+                <Link to={"/"} style={{ "color": "black", "textAlign": "left", "marginTop": "13px", "fontSize": "x-large" }}>
                   <i className="fa-solid fa-arrow-left" ></i>
                 </Link>
                 <form>
