@@ -1,24 +1,19 @@
-import logo from './logo.svg';
-import './App.css';
+import './App.scss';
+import Screeloader from './Components/Loader/Screeloader';
+import { useAuthContext } from './Contexts/AuthContext';
+import Routes from './Pages//Routes';
+import '../node_modules/bootstrap/dist/js/bootstrap.bundle'
 
 function App() {
+  const { isApploading } = useAuthContext()
+
+  if (isApploading) return <Screeloader />
+  else return <Routes />
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+
+
+    </>
   );
 }
 

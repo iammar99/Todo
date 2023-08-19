@@ -1,0 +1,52 @@
+@media screen and (max-width:579px) {
+    #todo-input-container {
+        width: 81%;
+    }
+
+    button.arrow {
+        position: absolute;
+        top: 20%;
+        left: 12%;
+    }
+}
+
+@media screen and (max-width:769px) {
+    .form-container {
+
+        .col-md-6:nth-child(1) {
+            padding: 0%;
+            display: flex;
+            justify-content: center;
+            text-align: center
+        }
+
+        .col-md-6:nth-child(2) {
+            padding: 0%;
+            display: flex;
+            justify-content: center;
+            text-align: center
+        }
+
+        .card {
+            min-height: 97vh;
+            padding: 19px 23px;
+            margin-top: 19%;
+            margin-bottom: 11%;
+        }
+    }
+    tr {
+        .container {
+            width: 80%;
+        }
+
+    }
+}
+
+@media screen and (max-width:550px) {
+    tr {
+        .container {
+            width: 100%;
+        }
+
+    }
+}

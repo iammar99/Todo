@@ -1,0 +1,159 @@
+@import "./Scss/bootstrap";
+@import "./Scss/screenloader";
+@import "./Scss/link-hover";
+@import "./Scss/scroll-bar";
+
+.col {
+    padding: 0%;
+}
+ 
+#root {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+main {
+    flex: 1 0 auto;
+}
+body{
+    background-image: url("./Assets/background\(1\).png");
+    background-size: cover;
+}
+nav.navbar {
+    box-shadow: rgba(0, 0, 0, 0.09) 0px 2px 1px, rgba(0, 0, 0, 0.09) 0px 4px 2px, rgba(0, 0, 0, 0.09) 0px 8px 4px, rgba(0, 0, 0, 0.09) 0px 16px 8px, rgba(0, 0, 0, 0.09) 0px 32px 16px;
+}
+footer{
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
+}
+img {
+    width: 100%;
+    mix-blend-mode: color-burn;
+}
+
+a {
+    text-decoration: none;
+    color: white;
+}
+
+// Form Home
+
+
+.form {
+    .col-md-6:nth-child(1) {
+        padding: 0%;
+        display: flex;
+        justify-content: flex-end;
+        text-align: center
+    }
+
+    .col-md-6:nth-child(2) {
+        padding: 0%;
+        display: flex;
+        justify-content: flex-start;
+        text-align: center
+    }
+
+    .card {
+        border: 0;
+        margin: 32% 0 0 0;
+        min-height: 54vh;
+        width: 78%;
+        color: white;
+        background-image: url("./Assets/background.png");
+
+        .box {
+            background-color: rgba(0, 0, 0, 0.5607843137);
+            color: white;
+            margin: auto;
+            width: 84%;
+            min-height: 181px;
+            padding: 32px;
+        }
+    }
+}
+
+.suggestion-box {
+    background: white;
+    min-height: 57px;
+    width: 66%;
+    z-index: 3;
+    position: absolute;
+    border-radius: 20px;
+    display: none;
+    margin-bottom: 0%;
+    top: 68%;
+    padding: 12px;
+
+    hr {
+        margin: 0%;
+    }
+}
+
+// Todo input Container
+
+#todo-input-container {
+    width: 40%;
+    text-align: center;
+    border: 1px solid black;
+    padding: 9px 22px;
+    display: none;
+    min-height: 100vh;
+    margin-bottom: 27px;
+    background-color: white;
+    color: black;
+    border-radius: 22px;
+
+    button.arrow {
+        position: relative;
+        top: 18%;
+        right: 44%;
+        background: transparent;
+        color: black;
+        font-size: x-large;
+    }
+}
+
+.tr {
+    .container {
+        background-image: url("./Assets/background.png");
+        width: 58%;
+        min-height: 30vh;
+        margin-bottom: 4%;
+        padding: 5% 10%;
+        color: white;
+        border-radius: 16px;
+    }
+
+    td {
+        margin: 3%;
+        display: inline-block;
+    }
+}
+
+// Frontend
+
+.msg-box {
+    display: flex;
+    justify-content: center;
+    height: 70vh;
+    align-items: center;
+
+    h1#msg {
+        color: white;
+        border-radius: 23px;
+        background-color: red;
+        font-size: -webkit-xxx-large;
+        font-weight: 900;
+        font-family: emoji;
+    }
+}
+
+// dashboard
+.dashboard-main {
+    // background-image: url('./Assets/background.png');
+    background-size: cover;
+    color: white;
+}
+
+@import "./Scss/mediaqueries"
