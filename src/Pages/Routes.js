@@ -10,7 +10,7 @@ import { useAuthContext } from '../Contexts/AuthContext'
 
 export default function Index() {
   const {isAuth} = useAuthContext()
-  console.log(isAuth)
+  // console.log(isAuth)
   return (
     <>
     <Routes>

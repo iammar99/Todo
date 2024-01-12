@@ -6,7 +6,7 @@
     button.arrow {
         position: absolute;
         top: 20%;
-        left: 12%;
+        left: -44%;
     }
 }
 
@@ -17,14 +17,14 @@
             padding: 0%;
             display: flex;
             justify-content: center;
-            text-align: center
+            text-align: center;
         }
 
         .col-md-6:nth-child(2) {
             padding: 0%;
             display: flex;
             justify-content: center;
-            text-align: center
+            text-align: center;
         }
 
         .card {
@@ -32,6 +32,7 @@
             padding: 19px 23px;
             margin-top: 19%;
             margin-bottom: 11%;
+            width: 100%;
         }
     }
     tr {

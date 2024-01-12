@@ -1,6 +1,7 @@
 import React from 'react'
 import '../../Scss/_mediaqueries.scss'
 import { Link } from 'react-router-dom'
+import '../../Scss/_mediaqueries.scss'
 
 export default function Home() {
     return (
@@ -18,7 +19,7 @@ export default function Home() {
                                         <button className="btn btn-info text-white" style={{ "width": "60%", "margin": "20px" }}>
                                             Login
                                         </button>
-                                    </Link>
+                                    </Link> 
                                 </div>
                             </div>
                         </div>

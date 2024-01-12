@@ -1,63 +1,43 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { message } from 'antd'
 import { useAuthContext } from '../../Contexts/AuthContext'
+import { auth } from 'Config/firebase'
+import { signInWithEmailAndPassword, sendPasswordResetEmail } from 'firebase/auth'
 import '../../Scss/_mediaqueries.scss'
 
 
-export default function Login() { 
+export default function Login() {
   let email, password = ""
-  const {dispatch , user} = useAuthContext()
+  const [isProccessing, setIsProccessing] = useState(false)
+  const { dispatch, user } = useAuthContext()
   function handleSubmit(e) {
     e.preventDefault()
-    const users = JSON.parse(localStorage.getItem("users"))
-    if (!users) {
-      message.error("No User Found")
+    if (!email || !password) {
+      message.error("Please Fill All The Fields")
     }
     else {
-      if (!email || !password) {
-        message.error("Please Fill All The Fields")
-      }
-      else{
-        for (let i = 0; i < users.length; i++) {
-
-          if (email === users[i].email) {
-            if (password === users[i].password) {
-              console.log("Logged in")
-              message.success("Logged In")
-              dispatch({type:"Set_Logged_In" , payload : {user}})
-              break;
-            }
-  
-            else {
-              message.error("Invalid Password ")        
-              break;
-            }
-  
-          }
-          else{
-            message.error("Email Not Found ")
-          }
-        }
-      }
-
+      setIsProccessing(true)
+      signInWithEmailAndPassword(auth, email, password)
+        .then((userCredential) => {
+          const user = userCredential.user;
+          message.success("Logged In")
+          dispatch({ type: "Set_Logged_In", payload: { user } })
+          localStorage.setItem("Token", "true")
+          localStorage.setItem("User", JSON.stringify(user))
+          setIsProccessing(false)
+          // ...
+        })
+        .catch((error) => {
+          setIsProccessing(false)
+          message.error("Username or Password Invalid")
+          console.log('error', error)
+        });
     }
-    console.log(email, password)
- 
+
 
   }
 
-
-  const showPassword = () => {
-    var x = document.getElementById('password');
-    if (x.type == 'password') {
-      x.type = 'text';
-    } else {
-      x.type = 'password';
-    };
-  }
-
-  // Show Password
 
   const myStyle =
   {
@@ -86,13 +66,23 @@ export default function Login() {
                   </div>
                   <div className="mb-3 d-flex">
                     <input style={myStyle} type="password" placeholder="Password" className="form-control" id="password" onChange={(e) => { password = e.target.value }} />
-                    &nbsp;&nbsp;
-                    <input type="checkbox" name="password-btn" id="password-btn" onClick={showPassword} />
                   </div>
-
-                  <button type="submit" className="btn btn-primary" onClick={handleSubmit}>
-                    Submit
-                  </button>
+                  <div className="d-flex justify-content-between my-4">
+                    <button type="submit" className="btn btn-primary" onClick={handleSubmit}>
+                      {
+                        isProccessing
+                          ?
+                          <>
+                            <div className="spinner-border spinner-border-sm"></div>
+                          </>
+                          :
+                          "Submit"
+                      }
+                    </button>
+                    <Link to={"/verfiy"}>
+                      Forgot Password
+                    </Link>
+                  </div>
                 </form>
               </div>
             </div>

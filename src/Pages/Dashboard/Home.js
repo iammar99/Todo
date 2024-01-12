@@ -1,16 +1,15 @@
 import { message } from 'antd'
-import React from 'react'
+import { fireStore } from 'Config/firebase'
+import { doc, setDoc } from "firebase/firestore/lite";
+import { AuthContext } from 'Contexts/AuthContext';
+import React, { useContext, useState } from 'react'
 
 
 export default function Home() {
 
-  const todos = []
-  let name, time, description, location = ""
-
-
-
-
-
+  const {user} = useContext(AuthContext)
+  const [isProceessing , setIsProceessing] = useState(false)
+  let name, time, description, location,  dateModified = ""
   const handleIn = () => {
     document.getElementById("todo-input-container").style = "display:block;"
     // document.getElementById("main").style = "display:block;"
@@ -22,26 +21,26 @@ export default function Home() {
     document.getElementById("main-container").style = "display:block;"
   }
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
     if (!name || !time || !location || !description) {
       message.error("Fill All the Fields")
     }
     else {
+    let randomID = Math.random().toString(36).slice(2)
       let todo = {
         name,
         time,
         description,
-        location
+        location,
+        createdBy : user.uid,
+        id : randomID , 
+        dateModified
       }
-      todos.push(todo)
-      let oldarray = JSON.parse(localStorage.getItem("todos"))
-      if (oldarray == 0) {
-        let array = []
-        localStorage.setItem("todos", JSON.stringify(array));
-      }
-      localStorage.setItem("todos", JSON.stringify(todos));
-      // console.log(todos)
+      setIsProceessing(true)
+      await setDoc(doc(fireStore, "todos", randomID), todo);
+      setIsProceessing(false)
+
       message.success("New Todo")
     }
   }
@@ -65,7 +64,6 @@ export default function Home() {
           </button>
         </div>
         {/* Todo Input  Box  */}
-        {/* <div className="main-todo-container" id='main'> */}
         <div className="container mt-5" id='todo-input-container'>
           <button className='border-0 arrow' onClick={handleOut}>
             <i className="fa-solid fa-arrow-left" ></i>
@@ -82,18 +80,25 @@ export default function Home() {
               <input style={myStyle} type="text" placeholder="Location" className="form-control" id="location" onChange={(e) => location = e.target.value} />
             </div>
             <div className="mb-3">
-              <input style={myStyle} type='datetime-local' placeholder="Date And Time" className="form-control" id="time" onChange={(e) => time = e.target.value} />
+              <input style={myStyle} type='date' placeholder="Date And Time" className="form-control" id="time" onChange={(e) => time = e.target.value} />
             </div>
             <div className="mb-3">
               <input style={myStyle} type="text" placeholder="Description" className="form-control" id="description" onChange={(e) => description = e.target.value} />
             </div>
 
             <button type="submit" className="btn btn-primary" onClick={handleSubmit}>
-              Submit
+              {
+                isProceessing
+                ?
+                <>
+                <div className="spinner-border spinner-border-sm"></div>
+                </>
+                :
+                "Submit"
+              }
             </button>
           </form>
         </div>
-        {/* </div>/ */}
       </main>
     </>
   )

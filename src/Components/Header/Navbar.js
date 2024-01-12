@@ -1,18 +1,28 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import logo from '../../Assets/logo.png'
-import {useAuthContext} from '../../Contexts/AuthContext'
+import { useAuthContext } from '../../Contexts/AuthContext'
 import { message } from 'antd'
+import { auth } from 'Config/firebase'
+import { signOut } from 'firebase/auth'
 
 export default function Navbar() {
 
 
-  const {dispatch } = useAuthContext()
+  const { dispatch } = useAuthContext()
   const handleLogout = (e) => {
     e.preventDefault()
-    console.log("hello")
-    dispatch({type:"Set_Logged_Out"})
-    message.error("Logging Out")
+    signOut(auth)
+      .then(() => {
+        console.log('Loggoed Out')
+        message.success("Loggoed Out")
+      })
+      .catch((error) => {
+        console.log('error', error)
+        // ..
+      });
+    dispatch({ type: "Set_Logged_Out" })
+    localStorage.setItem("Token", "false")
   }
 
   return (

@@ -1,6 +1,7 @@
 @import "./Scss/bootstrap";
 @import "./Scss/screenloader";
 @import "./Scss/link-hover";
+@import "./Scss/loader";
 @import "./Scss/scroll-bar";
 
 .col {
@@ -60,7 +61,7 @@ a {
         min-height: 54vh;
         width: 78%;
         color: white;
-        // background-image: url("./Assets/background.png");
+        // Glass morphism
         background: rgba(225, 225, 225, 0.2);
         box-shadow: 0 4px 30px rgba(225, 225, 225, 0.2);
         border-radius: 10px;
@@ -120,7 +121,10 @@ a {
 
 .tr {
     .container {
-        background-image: url("./Assets/background.png");
+        background: rgba(225, 225, 225, 0.2);
+        box-shadow: 0 4px 30px rgba(225, 225, 225, 0.2);
+        border-radius: 10px;
+        backdrop-filter: blur(5px);
         width: 58%;
         min-height: 30vh;
         margin-bottom: 4%;
