@@ -27,7 +27,7 @@ Welcome to the React Firebase Todo Application! This web application allows user
 Explore the application without the ability to make changes:
     <ol>
         <li>
-            Visit the live demo: <a  href="detailed-farmer.surge.sh" target="_blank" >React Firebase Todo App</a> .
+            Visit the live demo: [React Firebase Todo App](https://detailed-farmer.surge.sh) .
         </li>
     </ol>
 
