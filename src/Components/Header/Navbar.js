@@ -14,7 +14,6 @@ export default function Navbar() {
     e.preventDefault()
     signOut(auth)
       .then(() => {
-        console.log('Loggoed Out')
         message.success("Loggoed Out")
       })
       .catch((error) => {

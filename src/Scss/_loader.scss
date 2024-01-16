@@ -1,42 +1,78 @@
 div.loader {
-    width: 8vmax;
-    height: 8vmax;
-    border-right: 4px solid #ffffff;
+  width: 8vmax;
+  height: 8vmax;
+  border-right: 4px solid #ffffff;
+  border-radius: 100%;
+  animation: spinRight 800ms linear infinite;
+  margin: auto;
+
+
+  &:before,
+  &:after {
+    content: '';
+    width: 6vmax;
+    height: 6vmax;
+    display: block;
+    position: absolute;
+    top: calc(50% - 3vmax);
+    left: calc(50% - 3vmax);
+    border-left: 3px solid #ffffff;
     border-radius: 100%;
-    animation: spinRight 800ms linear infinite;
-    margin: auto;
-  
-    
-    &:before, &:after {
-      content: '';
-      width: 6vmax;
-      height: 6vmax;
-      display: block;
-      position: absolute;
-      top: calc(50% - 3vmax);
-      left: calc(50% - 3vmax);
-      border-left: 3px solid #ffffff;
-      border-radius: 100%;
-      animation: spinLeft 800ms linear infinite;
-    }
-    
-    &:after {
-      width: 4vmax;
-      height: 4vmax;
-      top: calc(50% - 2vmax);
-      left: calc(50% - 2vmax);
-      border: 0;
-      border-right: 2px solid #ffffff;
-      animation: none;
-    }
+    animation: spinLeft 800ms linear infinite;
   }
-  
-  @keyframes spinLeft {
-    from {transform:rotate(0deg);}
-    to {transform:rotate(720deg);}
+
+  &:after {
+    width: 4vmax;
+    height: 4vmax;
+    top: calc(50% - 2vmax);
+    left: calc(50% - 2vmax);
+    border: 0;
+    border-right: 2px solid #ffffff;
+    animation: none;
   }
-  
-  @keyframes spinRight {
-    from {transform:rotate(360deg);}
-    to {transform:rotate(0deg);}
+}
+
+@keyframes spinLeft {
+  from {
+    transform: rotate(0deg);
   }
+
+  to {
+    transform: rotate(720deg);
+  }
+}
+
+@keyframes spinRight {
+  from {
+    transform: rotate(360deg);
+  }
+
+  to {
+    transform: rotate(0deg);
+  }
+}
+
+// ------------------------ Loading Box ------------------------
+
+.loading-box {
+  width: 20%;
+  height: 51px;
+  border-radius: 5px;
+  background: #2193b0; 
+  background: linear-gradient(to left, #2193b0, #6dd5ed); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  margin-top: 11px;
+  position: fixed;
+  right: 15px;
+  color: white;
+  font-size: large;
+  font-weight: 600;
+  transition: display 2s ease-in-out;
+  animation: display 0.5s ;
+}
+
+@keyframes display {
+  from {right: -215px;}
+  to {right: 15px;}
+}

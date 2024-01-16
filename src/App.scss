@@ -3,11 +3,13 @@
 @import "./Scss/link-hover";
 @import "./Scss/loader";
 @import "./Scss/scroll-bar";
+@import "./Scss/checkbox";
+
 
 .col {
     padding: 0%;
 }
- 
+
 #root {
     display: flex;
     flex-direction: column;
@@ -17,16 +19,20 @@
 main {
     flex: 1 0 auto;
 }
-body{
+
+body {
     background-image: url("./Assets/background\(1\).png");
     background-size: cover;
 }
+
 nav.navbar {
     box-shadow: rgba(0, 0, 0, 0.09) 0px 2px 1px, rgba(0, 0, 0, 0.09) 0px 4px 2px, rgba(0, 0, 0, 0.09) 0px 8px 4px, rgba(0, 0, 0, 0.09) 0px 16px 8px, rgba(0, 0, 0, 0.09) 0px 32px 16px;
 }
-footer{
+
+footer {
     box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
 }
+
 img {
     width: 100%;
     mix-blend-mode: color-burn;
@@ -74,6 +80,7 @@ a {
             width: 84%;
             min-height: 181px;
             padding: 32px;
+            
         }
     }
 }
@@ -108,7 +115,8 @@ a {
     background-color: white;
     color: black;
     border-radius: 22px;
-
+    transition: display 2s ease-in-out;
+    animation: display 1s ;
     button.arrow {
         position: relative;
         top: 18%;
@@ -159,9 +167,15 @@ a {
 
 // dashboard
 .dashboard-main {
-    // background-image: url('./Assets/background.png');
     background-size: cover;
     color: white;
 }
 
+// ---------- Todo input Container Animation
+
+@keyframes display {
+    from {opacity: 0;}
+    to {opacity: 1;}
+  }
+  
 @import "./Scss/mediaqueries"

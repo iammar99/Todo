@@ -18,7 +18,7 @@ export default function Index() {
         <Route path='/frontend/*' element={<PrivateRoute Component={Frontend}/>} />
         <Route path='/dashboard/*' element={<PrivateRoute Component={Dashboard}/>} />
 
-        <Route path='*' element={<main><h1 className='text-center'>404 Error Page Not Found</h1></main>}/>
+        {/* <Route path='*' element={<main><h1 className='text-center text-light'>404 Error Page Not Found</h1></main>}/> */}
     </Routes>
     </>
   )

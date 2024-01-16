@@ -3,6 +3,10 @@ import { collection, getDocs, query, where, doc, deleteDoc, setDoc, serverTimest
 import { fireStore } from "../../Config/firebase"
 import React, { useCallback, useContext, useEffect, useState } from 'react'
 import { AuthContext } from 'Contexts/AuthContext';
+// ------------ React Notification ----------------
+import { NotificationContainer, NotificationManager } from 'react-notifications';
+import 'react-notifications/lib/notifications.css';
+
 
 export default function TodoHome() {
   // ----------- Processings ----------- 
@@ -26,7 +30,6 @@ export default function TodoHome() {
       array.push(data)
       setIsProcessing(false)
     });
-    console.log('array', array)
 
     setDisplayTodo(array)
   })
@@ -37,7 +40,6 @@ export default function TodoHome() {
   // ----------- Delete ----------- 
 
   const handleDelete = async (todo) => {
-
     setIsDeleteProcessing(true)
     await deleteDoc(doc(fireStore, "todos", todo.id));
     message.error("Todo Deleted")
@@ -46,7 +48,6 @@ export default function TodoHome() {
     })
     setDisplayTodo(newTodos)
     setIsDeleteProcessing(false)
-    console.log('newTodos', newTodos)
   }
 
   // ----------- Edit ----------- 
@@ -56,7 +57,6 @@ export default function TodoHome() {
   const handleUpdate = async () => {
     setIsUpdateProcessing(true)
     let email = user.email
-    console.log(email)
     let updatedTodo = { ...selectedTodo }
     updatedTodo.dateModified = serverTimestamp()
     updatedTodo.modifiedBy = email
@@ -69,8 +69,8 @@ export default function TodoHome() {
       }
     })
     setDisplayTodo(newTodo)
-    console.log(selectedTodo)
     setIsUpdateProcessing(false)
+    message.success("Todo Updated")
   }
 
   const myStyle =
@@ -82,6 +82,28 @@ export default function TodoHome() {
 
   return (
     <main>
+      {
+        isDeleteProcessing
+          ?
+          <div className="loading-box">
+            <div className="spinner-border text-danger spinner-border-sm">
+            </div>
+            Deleting Todo
+          </div>
+          :
+          <></>
+      }
+      {
+        isUpdateProcessing
+          ?
+          <div className="loading-box ">
+            <div className="spinner-border text-dark spinner-border-sm">
+            </div>
+            Updating Todo
+          </div>
+          :
+          <></>
+      }
       <h1 className="text-center text-light my-5 py-5">
         Todo List
       </h1>
@@ -111,25 +133,13 @@ export default function TodoHome() {
                           <div><div><b>Description :- </b></div> {displayTodo.description}</div>
                           <div className="button d-flex align-items-center">
                             {/* -------- Delete -------- */}
-                            <button className='btn btn-danger mt-3' onClick={() => { handleDelete(displayTodo) }} >
-                              {
-                                isDeleteProcessing
-                                  ?
-                                  <div className="spinner-border spinner-border-sm" role="status">
-                                  </div>
-                                  : "Delete"
-                              }
+                            <button className='btn btn-danger mt-3' onClick={() => { handleDelete(displayTodo); }} >
+                              Delete
                             </button>
                             &nbsp; | &nbsp;
                             {/* --------- Edit --------- */}
                             <button type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" className='btn btn-info mt-3' onClick={() => { setSelectedTodo(displayTodo) }} >
-                              {
-                                isUpdateProcessing
-                                  ?
-                                  <div className="spinner-border spinner-border-sm" role="status">
-                                  </div>
-                                  : "Edit"
-                              }
+                              Edit
                             </button>
                           </div>
                         </div>
@@ -163,7 +173,6 @@ export default function TodoHome() {
               </div>
             </div>
             <div className="modal-footer">
-              <input type="reset" className="btn btn-danger" value='Clear' />
               <button type="button" className="btn btn-success" data-bs-dismiss="modal" onClick={handleUpdate}>
                 Save Changes
               </button>
